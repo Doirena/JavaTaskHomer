@@ -17,7 +17,7 @@ public class Property {
 
     private Integer id;
     private String type;
-    private int tax_rate;
+    private double tax_rate;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "propertyType")
@@ -52,11 +52,11 @@ public class Property {
         this.type = type;
     }
 
-    public int getTax_rate() {
+    public double getTax_rate() {
         return tax_rate;
     }
 
-    public void setTax_rate(int tax_rate) {
+    public void setTax_rate(double tax_rate) {
         this.tax_rate = tax_rate;
     }
 

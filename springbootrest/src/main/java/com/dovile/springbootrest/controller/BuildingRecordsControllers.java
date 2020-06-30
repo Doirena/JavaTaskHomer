@@ -91,7 +91,7 @@ public class BuildingRecordsControllers {
         return ResponseEntity.ok(updatedRecord);
     }
 
-    @DeleteMapping("/record/{id}")
+    @DeleteMapping("record/{id}")
     @Transactional
     public Map<String, Boolean> deleteOwner(
             @PathVariable(value = "id") Integer recordId) throws Exception {
@@ -104,7 +104,13 @@ public class BuildingRecordsControllers {
         return response;
     }
 
-
-
+    @GetMapping("taxes/{id}")
+        public Double getTaxes(@PathVariable(value = "id") Integer id) {
+            Double rezult=null;
+        if (ownerRepository.findById(id) != null) {
+            rezult = buildingRecordsRepository.RealEstateTaxes(id);
+            }
+        return rezult;
+        }
 
 }

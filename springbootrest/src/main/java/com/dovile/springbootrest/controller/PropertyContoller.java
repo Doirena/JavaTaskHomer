@@ -1,7 +1,6 @@
 package com.dovile.springbootrest.controller;
 
-import com.dovile.springbootrest.entities.BuildingRecords;
-import com.dovile.springbootrest.entities.Owner;
+
 import com.dovile.springbootrest.entities.Property;
 import com.dovile.springbootrest.exception.ResourceNotFoundException;
 import com.dovile.springbootrest.repository.PropertyRepository;

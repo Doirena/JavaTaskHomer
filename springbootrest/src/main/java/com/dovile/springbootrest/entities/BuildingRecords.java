@@ -7,7 +7,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "building_records")
+@NamedQueries(value = {
+        @NamedQuery(name = "BuildingRecords.RealEstateTaxes", query = "SELECT SUM(b.value*(p.tax_rate/100)) FROM BuildingRecords b join b.owner o join b.propertyType p WHERE (o.id = :id)")})
+
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class BuildingRecords {
 
     @Id

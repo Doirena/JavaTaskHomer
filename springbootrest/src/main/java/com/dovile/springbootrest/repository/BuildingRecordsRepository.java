@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface BuildingRecordsRepository extends JpaRepository <BuildingRecords, Integer> {
 
     @Query(name = "BuildingRecords.RealEstateTaxes")
-    Double RealEstateTaxes (@Param("id") Integer id);
+    String RealEstateTaxes (@Param("id") Integer id);
 
 }

@@ -7,6 +7,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "property")
+@NamedQueries({
+        @NamedQuery(name = "Property.findBYType", query = "SELECT p FROM Property p WHERE p.type =: property")})
+
 public class Property {
 
     @Id

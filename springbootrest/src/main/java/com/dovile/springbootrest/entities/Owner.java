@@ -9,6 +9,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "owner")
+@NamedQueries({
+        @NamedQuery(name = "Owner.findBYName", query = "SELECT o FROM Owner o WHERE o.name =: owner")})
+
 public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

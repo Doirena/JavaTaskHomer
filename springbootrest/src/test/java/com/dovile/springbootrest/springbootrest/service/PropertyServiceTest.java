@@ -47,7 +47,7 @@ public class PropertyServiceTest {
         propertyList.add(new Property(2, "House", 20));
         propertyList.add(new Property(3, "Apartament", 30));
         given(propertyRepository.findAll()).willReturn(propertyList);
-        List<Property> expected = propertyService.findAllPropertys();
+        List<Property> expected = propertyService.findAllProperties();
         assertEquals(expected, propertyList);
     }
 

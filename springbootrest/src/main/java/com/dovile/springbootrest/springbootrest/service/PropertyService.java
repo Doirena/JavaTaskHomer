@@ -18,7 +18,7 @@ public class PropertyService {
     @Autowired
     private PropertyRepository propertyRepository;
 
-    public List<Property> findAllPropertys() {
+    public List<Property> findAllProperties() {
         return propertyRepository.findAll();
     }
 

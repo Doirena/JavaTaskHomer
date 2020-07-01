@@ -57,4 +57,11 @@ public class Owner {
         this.buildingRecords = buildingRecords;
     }
 
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id=" + id +
+                ", name='" + name +
+                '}';
+    }
 }

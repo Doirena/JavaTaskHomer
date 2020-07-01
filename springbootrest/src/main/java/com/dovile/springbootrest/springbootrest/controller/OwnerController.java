@@ -28,7 +28,7 @@ public class OwnerController {
     }
 
     @GetMapping("/owner/{id}")
-    public ResponseEntity<Owner> getUserById(
+    public ResponseEntity<Owner> getOwnerById(
             @PathVariable(value = "id") Integer ownerId) throws ResourceNotFoundException {
         Owner owner = ownerService.findOwnerById(ownerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Owner not found on: " + ownerId));

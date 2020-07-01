@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/")
-public class BuildingRecordsControllers {
+@RequestMapping("/api/v3")
+public class BuildingRecordsController {
 
     @Autowired
     private BuildingRecordsService recordsService;
@@ -29,7 +29,7 @@ public class BuildingRecordsControllers {
     private PropertyService propertyService;
 
 
-    @GetMapping("records")
+    @GetMapping("/records")
     public List<BuildingRecords> getAllBuildingRecords() {
         return recordsService.findAllrecords();
     }
@@ -86,7 +86,7 @@ public class BuildingRecordsControllers {
         return ResponseEntity.ok(updatedRecord);
     }
 
-    @DeleteMapping("record/{id}")
+    @DeleteMapping("/record/{id}")
     public Map<String, Boolean> deleteOwner(
             @PathVariable(value = "id") Integer recordId) throws Exception {
         BuildingRecords record = recordsService.findRecordById(recordId)
@@ -98,7 +98,7 @@ public class BuildingRecordsControllers {
         return response;
     }
 
-    @GetMapping("taxes/{id}")
+    @GetMapping("/taxes/{id}")
         public String getTaxes(@PathVariable(value = "id") Integer id) {
             String result = recordsService.CalculateTaxes(id);
             if (result == null){

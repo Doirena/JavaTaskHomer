@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v2")
 public class PropertyContoller {
 
     @Autowired
     private PropertyService propertyService;
 
-    @GetMapping("properties")
-    public List<Property> getAllPropertys() {
-        return propertyService.findAllPropertys();
+    @GetMapping("/properties")
+    public List<Property> getAllProperties() {
+        return propertyService.findAllProperties();
     }
 
     @GetMapping("/property/{id}")

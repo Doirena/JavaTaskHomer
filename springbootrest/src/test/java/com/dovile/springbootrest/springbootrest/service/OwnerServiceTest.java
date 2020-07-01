@@ -1,4 +1,4 @@
-package com.dovile.springbootrest.springbootrest;
+package com.dovile.springbootrest.springbootrest.service;
 
 import com.dovile.springbootrest.springbootrest.entities.Owner;
 import com.dovile.springbootrest.springbootrest.repository.OwnerRepository;
@@ -65,6 +65,7 @@ public class OwnerServiceTest {
         given(ownerRepository.findBYName(name)).willReturn(owner);
         final Owner expected = ownerService.findOwnerByName(name);
         assertThat(expected).isNotNull();
+        assertEquals(owner,expected);
     }
 
     @Test

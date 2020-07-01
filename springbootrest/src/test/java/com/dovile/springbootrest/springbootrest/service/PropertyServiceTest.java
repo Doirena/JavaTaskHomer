@@ -1,4 +1,4 @@
-package com.dovile.springbootrest.springbootrest;
+package com.dovile.springbootrest.springbootrest.service;
 
 
 import com.dovile.springbootrest.springbootrest.entities.Owner;

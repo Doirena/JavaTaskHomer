@@ -43,6 +43,15 @@ public class BuildingRecords {
         this.value = value;
     }
 
+    public BuildingRecords(Integer id, String address, double size, double value, Owner owner, Property property) {
+        this.id = id;
+        this.address = address;
+        this.size = size;
+        this.value = value;
+        this.owner = owner;
+        this.propertyType = property;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package com.dovile.springbootrest.springbootrest.controller;
 
 
+
 import com.dovile.springbootrest.springbootrest.entities.BuildingRecords;
 import com.dovile.springbootrest.springbootrest.entities.Owner;
 import com.dovile.springbootrest.springbootrest.entities.Property;

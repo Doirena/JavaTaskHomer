@@ -1,4 +1,4 @@
-package com.dovile.springbootrest.entities;
+package com.dovile.springbootrest.springbootrest.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

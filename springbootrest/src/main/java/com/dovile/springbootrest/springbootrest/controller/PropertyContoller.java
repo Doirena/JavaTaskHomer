@@ -1,9 +1,9 @@
-package com.dovile.springbootrest.controller;
+package com.dovile.springbootrest.springbootrest.controller;
 
 
-import com.dovile.springbootrest.entities.Property;
-import com.dovile.springbootrest.exception.ResourceNotFoundException;
-import com.dovile.springbootrest.repository.PropertyRepository;
+import com.dovile.springbootrest.springbootrest.entities.Property;
+import com.dovile.springbootrest.springbootrest.exception.ResourceNotFoundException;
+import com.dovile.springbootrest.springbootrest.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package com.dovile.springbootrest.repository;
+package com.dovile.springbootrest.springbootrest.repository;
 
-import com.dovile.springbootrest.entities.Property;
+import com.dovile.springbootrest.springbootrest.entities.Property;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

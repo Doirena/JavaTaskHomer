@@ -1,4 +1,4 @@
-package com.dovile.springbootrest.exception;
+package com.dovile.springbootrest.springbootrest.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,14 +1,13 @@
-package com.dovile.springbootrest.controller;
+package com.dovile.springbootrest.springbootrest.controller;
 
 
-import com.dovile.springbootrest.entities.BuildingRecords;
-import com.dovile.springbootrest.entities.Owner;
-import com.dovile.springbootrest.entities.Property;
-import com.dovile.springbootrest.exception.ResourceNotFoundException;
-import com.dovile.springbootrest.repository.BuildingRecordsRepository;
-import com.dovile.springbootrest.repository.OwnerRepository;
-import com.dovile.springbootrest.repository.PropertyRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
+import com.dovile.springbootrest.springbootrest.entities.BuildingRecords;
+import com.dovile.springbootrest.springbootrest.entities.Owner;
+import com.dovile.springbootrest.springbootrest.entities.Property;
+import com.dovile.springbootrest.springbootrest.exception.ResourceNotFoundException;
+import com.dovile.springbootrest.springbootrest.repository.BuildingRecordsRepository;
+import com.dovile.springbootrest.springbootrest.repository.OwnerRepository;
+import com.dovile.springbootrest.springbootrest.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,6 @@ import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/")

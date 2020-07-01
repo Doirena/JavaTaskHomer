@@ -2,13 +2,14 @@ package com.dovile.springbootrest.springbootrest.controller;
 
 import com.dovile.springbootrest.springbootrest.entities.Owner;
 import com.dovile.springbootrest.springbootrest.exception.ResourceNotFoundException;
-import com.dovile.springbootrest.springbootrest.repository.OwnerRepository;
+
+import com.dovile.springbootrest.springbootrest.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.transaction.Transactional;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,50 +20,47 @@ import java.util.Map;
 public class OwnerController {
 
     @Autowired
-    private OwnerRepository ownerRepository;
+    private OwnerService ownerService;
 
     @GetMapping("/owners")
     public List<Owner> getAllOwners() {
-        return ownerRepository.findAll();
+       return ownerService.findAllOwners();
     }
 
     @GetMapping("/owner/{id}")
     public ResponseEntity<Owner> getUserById(
             @PathVariable(value = "id") Integer ownerId) throws ResourceNotFoundException {
-        Owner owner = ownerRepository.findById(ownerId)
+        Owner owner = ownerService.findOwnerById(ownerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Owner not found on: " + ownerId));
         return ResponseEntity.ok().body(owner);
     }
 
     @PostMapping("/owner")
-    @Transactional
     public Owner createOwner(@RequestBody Owner owner) {
         owner.setId(null);
-        return ownerRepository.save(owner);
+        return ownerService.createOwner(owner);
     }
 
     @PutMapping("/owner/{id}")
-    @Transactional
     public ResponseEntity<Owner> updateOwner(
             @PathVariable(value = "id") Integer ownerId,
             @RequestBody Owner ownerDetails) throws ResourceNotFoundException {
-        Owner owner = ownerRepository.findById(ownerId)
+        Owner owner = ownerService.findOwnerById(ownerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Owner not found on: " + ownerId));
         owner.setName(ownerDetails.getName());
         owner.setBuildingRecords(ownerDetails.getBuildingRecords());
 
-        final Owner updatedOwner = ownerRepository.save(owner);
+        final Owner updatedOwner = ownerService.createOwner(owner);
         return ResponseEntity.ok(updatedOwner);
     }
 
     @DeleteMapping("/owner/{id}")
-    @Transactional
     public Map<String, Boolean> deleteOwner(
             @PathVariable(value = "id") Integer ownerId) throws Exception {
-        Owner owner = ownerRepository.findById(ownerId)
+        Owner owner = ownerService.findOwnerById(ownerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Owner not found on: " + ownerId));
 
-        ownerRepository.delete(owner);
+        ownerService.deleteOwnerById(ownerId);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;

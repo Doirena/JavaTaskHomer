@@ -105,11 +105,11 @@ public class BuildingRecordsControllers {
 
     @GetMapping("taxes/{id}")
         public String getTaxes(@PathVariable(value = "id") Integer id) {
-            String rezult = buildingRecordsRepository.RealEstateTaxes(id);
-            if (rezult == null){
+            String result = buildingRecordsRepository.RealEstateTaxes(id);
+            if (result == null){
                 throw new ArithmeticException("Owner not found");
             }
-        return rezult;
+        return result;
     }
 
 }

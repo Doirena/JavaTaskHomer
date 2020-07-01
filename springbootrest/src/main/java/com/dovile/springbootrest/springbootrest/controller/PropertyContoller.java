@@ -3,12 +3,12 @@ package com.dovile.springbootrest.springbootrest.controller;
 
 import com.dovile.springbootrest.springbootrest.entities.Property;
 import com.dovile.springbootrest.springbootrest.exception.ResourceNotFoundException;
-import com.dovile.springbootrest.springbootrest.repository.PropertyRepository;
+import com.dovile.springbootrest.springbootrest.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,34 +18,32 @@ import java.util.Map;
 public class PropertyContoller {
 
     @Autowired
-    private PropertyRepository propertyRepository;
+    private PropertyService propertyService;
 
     @GetMapping("properties")
-    public List<Property> getAllBuildingRecords() {
-        return propertyRepository.findAll();
+    public List<Property> getAllPropertys() {
+        return propertyService.findAllPropertys();
     }
 
     @GetMapping("/property/{id}")
     public ResponseEntity<Property> getPropertyById(
             @PathVariable(value = "id") Integer propertyId) throws ResourceNotFoundException {
-        Property property = propertyRepository.findById(propertyId)
+        Property property = propertyService.findPropertyById(propertyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Property not found on: " + propertyId));
         return ResponseEntity.ok().body(property);
     }
 
     @PostMapping("/property")
-    @Transactional
     public Property createProperty(@RequestBody Property property) {
         property.setId(null);
-        return propertyRepository.save(property);
+        return propertyService.createProperty(property);
     }
 
     @PutMapping("/property/{id}")
-    @Transactional
     public ResponseEntity<Property> updateProperty(
             @PathVariable(value = "id") Integer propertyId,
             @RequestBody Property propertyDetails) throws ResourceNotFoundException {
-        Property property = propertyRepository.findById(propertyId)
+        Property property = propertyService.findPropertyById(propertyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Property not found on: " + propertyId));
 
         property.setTax_rate(propertyDetails.getTax_rate());
@@ -53,18 +51,17 @@ public class PropertyContoller {
         property.setType(propertyDetails.getType());
 
 
-        final Property updatedProperty = propertyRepository.save(property);
+        final Property updatedProperty = propertyService.createProperty(property);
         return ResponseEntity.ok(updatedProperty);
     }
 
     @DeleteMapping("/property/{id}")
-    @Transactional
     public Map<String, Boolean> deleteProperty(
             @PathVariable(value = "id") Integer propertyId) throws Exception {
-        Property property = propertyRepository.findById(propertyId)
+        Property property = propertyService.findPropertyById(propertyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Property not found on: " + propertyId));
 
-        propertyRepository.delete(property);
+        propertyService.deletePropertyById(propertyId);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;

@@ -1,6 +1,8 @@
 package com.dovile.springbootrest.springbootrest.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -12,15 +14,18 @@ import javax.persistence.*;
 
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
+@ApiModel(description = "This is Building records class, has address, size, value, owner, property type ")
 public class BuildingRecords {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("This is building record id (Integer format)")
     private Integer id;
-
+    @ApiModelProperty("This is building record address (String format)")
     private String address;
+    @ApiModelProperty("This is building record size (Double format)")
     private double size;
+    @ApiModelProperty("This is building record value (Double format)")
     private double value;
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     @ManyToOne(optional = false)

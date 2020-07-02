@@ -4,13 +4,11 @@ import com.dovile.springbootrest.springbootrest.entities.Owner;
 import com.dovile.springbootrest.springbootrest.exception.ResourceNotFoundException;
 
 import com.dovile.springbootrest.springbootrest.service.OwnerService;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-
-
 
 
 import java.util.HashMap;
@@ -20,6 +18,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin
+@Api(value="Owner controller ", description ="create, update, delete and get owner by id. Get the whole list of owners.")
 public class OwnerController {
 
     @Autowired
@@ -27,11 +26,13 @@ public class OwnerController {
 
 
     @GetMapping("/owners")
+    @ApiOperation(value = "List of current owners", response=List.class )
     public List<Owner> getAllOwners() {
        return ownerService.findAllOwners();
     }
 
     @GetMapping("/owner/{id}")
+    @ApiOperation(value = "Get the owner by id", response=Owner.class)
     public ResponseEntity<Owner> getOwnerById(
             @PathVariable(value = "id") Integer ownerId) throws ResourceNotFoundException {
         Owner owner = ownerService.findOwnerById(ownerId)
@@ -40,15 +41,22 @@ public class OwnerController {
     }
 
     @PostMapping("/owner")
-    public Owner createOwner(@RequestBody @Validated Owner owner) {
+    @ApiOperation(value = "Create a new owner", response=Owner.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 504, message =  "System is overloaded... Wait a bit"),
+            @ApiResponse(code = 505, message =  "Out of owner material")
+    })
+    public Owner createOwner(
+            @ApiParam(value = "Insert the owner's name", required = true) @RequestBody @Validated Owner owner) {
         owner.setId(null);
         return ownerService.createOwner(owner);
     }
 
     @PutMapping("/owner/{id}")
+    @ApiOperation(value = "Update the owner", response=Owner.class)
     public ResponseEntity<Owner> updateOwner(
             @PathVariable(value = "id") Integer ownerId,
-            @RequestBody Owner ownerDetails) throws ResourceNotFoundException {
+           @ApiParam(value = "Choose the owner's id", required = true)  @RequestBody Owner ownerDetails) throws ResourceNotFoundException {
         Owner owner = ownerService.findOwnerById(ownerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Owner not found on: " + ownerId));
         owner.setName(ownerDetails.getName());
@@ -59,6 +67,7 @@ public class OwnerController {
     }
 
     @DeleteMapping("/owner/{id}")
+    @ApiOperation(value = "Delete the owner", response=Owner.class)
     public Map<String, Boolean> deleteOwner(
             @PathVariable(value = "id") Integer ownerId) throws Exception {
         Owner owner = ownerService.findOwnerById(ownerId)

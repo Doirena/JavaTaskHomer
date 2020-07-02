@@ -1,6 +1,8 @@
 package com.dovile.springbootrest.springbootrest.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
@@ -13,10 +15,13 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Owner.findBYName", query = "SELECT o FROM Owner o WHERE o.name =: owner")})
 
+@ApiModel(description = "This is owner class, has id and name")
 public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty ("This is owner id (Integer format)")
     private Integer id;
+    @ApiModelProperty("This is owner name (String format)")
     private String name;
 
     @JsonIgnore

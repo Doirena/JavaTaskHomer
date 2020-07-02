@@ -1,6 +1,8 @@
 package com.dovile.springbootrest.springbootrest.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,14 +11,16 @@ import java.util.List;
 @Table(name = "property")
 @NamedQueries({
         @NamedQuery(name = "Property.findBYType", query = "SELECT p FROM Property p WHERE p.type =: property")})
-
+@ApiModel(description = "This is Property class, has type, tax rate ")
 public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @ApiModelProperty("This is property id (Integer format)")
     private Integer id;
+    @ApiModelProperty("This is property type (String format)")
     private String type;
+    @ApiModelProperty("This is property tax rate (Double format)")
     private double tax_rate;
 
     @JsonIgnore

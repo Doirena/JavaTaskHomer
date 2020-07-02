@@ -47,8 +47,8 @@ public class PropertyControllerIT {
 
     @Test
     public void testGetOnePropValue() throws JSONException {
-        String response = restTemplate.getForObject(getRootUrl() + "/property/4", String.class);
-        JSONAssert.assertEquals("{type:House}", response, false);
+        String response = restTemplate.getForObject(getRootUrl() + "/property/3", String.class);
+        JSONAssert.assertEquals("{type:Apartment}", response, false);
     }
     @Test
     public void testGetPropertyById() {

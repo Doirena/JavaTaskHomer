@@ -9,6 +9,9 @@ import com.dovile.springbootrest.springbootrest.exception.ResourceNotFoundExcept
 import com.dovile.springbootrest.springbootrest.service.BuildingRecordsService;
 import com.dovile.springbootrest.springbootrest.service.OwnerService;
 import com.dovile.springbootrest.springbootrest.service.PropertyService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v3")
+@Api(value="Building records controller ", description ="create, update, delete and get the whole list of buildings records. Calculate the total yearly real estate tax by owner's id.")
 public class BuildingRecordsController {
 
     @Autowired
@@ -30,40 +34,40 @@ public class BuildingRecordsController {
 
 
     @GetMapping("/records")
+    @ApiOperation(value = "List of current building's records", response=List.class )
     public List<BuildingRecords> getAllBuildingRecords() {
         return recordsService.findAllrecords();
     }
 
     @PostMapping(value ="record",  params = {"owner","property"})
-    public BuildingRecords createRecords(@RequestBody BuildingRecords record,
-                                         @RequestParam(value = "owner") String owner,
-                                         @RequestParam(value = "property") String property){
+    @ApiOperation(value = "Create a new building record", response=BuildingRecords.class)
+    public BuildingRecords createRecords(
+            @ApiParam(value = "Insert information about the building", required = true)@RequestBody BuildingRecords record,
+            @ApiParam(value = "Choose the owner name", required = true)@RequestParam(value = "owner") String owner,
+            @ApiParam(value = "Choose the propety type", required = true)@RequestParam(value = "property") String property){
         record.setId(null);
         Property property1 = propertyService.findPropertyByType(property);
         if (property1 != null){
             record.setPropertyType(property1);
+        }else{
+            throw new ArithmeticException("Please insert a correct Property Type");
         }
 
         Owner owner1 = ownerService.findOwnerByName(owner);
         if (owner1 !=null){
             record.setOwner(owner1);
-        }
-        if (record.getOwner() == null){
-            throw new ArithmeticException("Please insert correct Owner");
-        }
-
-
-        if (record.getPropertyType() == null){
-            throw new ArithmeticException("Please insert correct Property Type");
+        }else{
+            throw new ArithmeticException("Please insert a correct Owner");
         }
         return recordsService.createRecord(record);
     }
 
 
     @PutMapping("/record/{id}")
+    @ApiOperation(value = "Update the building's information", response=BuildingRecords.class)
     public ResponseEntity<BuildingRecords> updateRecords(
             @PathVariable(value = "id") Integer recordId,
-            @RequestBody BuildingRecords redordDetails) throws ResourceNotFoundException {
+            @ApiParam(value = "Choose the building's record id", required = true)  @RequestBody BuildingRecords redordDetails) throws ResourceNotFoundException {
 
         BuildingRecords record = recordsService.findRecordById(recordId)
                 .orElseThrow(() -> new ResourceNotFoundException("Record not found on: " + recordId));
@@ -90,6 +94,7 @@ public class BuildingRecordsController {
     }
 
     @DeleteMapping("/record/{id}")
+    @ApiOperation(value = "Delete the building record", response=BuildingRecords.class)
     public Map<String, Boolean> deleteOwner(
             @PathVariable(value = "id") Integer recordId) throws Exception {
         BuildingRecords record = recordsService.findRecordById(recordId)
@@ -102,6 +107,7 @@ public class BuildingRecordsController {
     }
 
     @GetMapping("/taxes/{id}")
+    @ApiOperation(value = "Calculate the total yearly real estate tax by owner's id", response=String.class)
         public String getTaxes(@PathVariable(value = "id") Integer id) {
             String result = recordsService.CalculateTaxes(id);
             if (result == null){

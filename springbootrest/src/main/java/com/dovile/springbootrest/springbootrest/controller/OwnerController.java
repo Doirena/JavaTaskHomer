@@ -6,7 +6,9 @@ import com.dovile.springbootrest.springbootrest.exception.ResourceNotFoundExcept
 import com.dovile.springbootrest.springbootrest.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 
 
 
@@ -17,10 +19,12 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin
 public class OwnerController {
 
     @Autowired
     private OwnerService ownerService;
+
 
     @GetMapping("/owners")
     public List<Owner> getAllOwners() {
@@ -36,7 +40,7 @@ public class OwnerController {
     }
 
     @PostMapping("/owner")
-    public Owner createOwner(@RequestBody Owner owner) {
+    public Owner createOwner(@RequestBody @Validated Owner owner) {
         owner.setId(null);
         return ownerService.createOwner(owner);
     }

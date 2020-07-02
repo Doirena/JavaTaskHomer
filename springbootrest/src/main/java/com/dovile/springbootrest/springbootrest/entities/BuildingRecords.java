@@ -100,4 +100,15 @@ public class BuildingRecords {
         this.propertyType = propertyType;
     }
 
+    @Override
+    public String toString() {
+        return "BuildingRecords{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", size=" + size +
+                ", value=" + value +
+                ", owner=" + owner +
+                ", propertyType=" + propertyType +
+                '}';
+    }
 }

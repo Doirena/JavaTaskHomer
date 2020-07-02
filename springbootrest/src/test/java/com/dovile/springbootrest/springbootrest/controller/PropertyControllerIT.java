@@ -68,7 +68,7 @@ public class PropertyControllerIT {
 
     @Test
     public void testUpdateProperty() {
-        int id = 1;
+        Integer id = 1;
         Property property = restTemplate.getForObject(getRootUrl() + "/property/" + id, Property.class);
         property.setType("House");
         property.setType("Garden-House");
@@ -80,7 +80,7 @@ public class PropertyControllerIT {
 
     @Test
     public void testDeleteProperty() {
-        int id = 4;
+        Integer id = 4;
         Property property = restTemplate.getForObject(getRootUrl() + "/property/" + id, Property.class);
         assertNotNull(property);
         restTemplate.delete(getRootUrl() + "/property/" + id);

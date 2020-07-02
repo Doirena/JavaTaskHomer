@@ -46,17 +46,19 @@ public class BuildingRecordsControllerIT {
         record.setAddress("Naugagardukas str. 1, Vilnius");
         record.setSize(200);
         record.setValue(30);
-        ResponseEntity<BuildingRecords> postResponse = (ResponseEntity<BuildingRecords>) restTemplate.postForEntity(getRootUrl() + "/record", record, BuildingRecords.class);
+        ResponseEntity<BuildingRecords> postResponse = (ResponseEntity<BuildingRecords>) restTemplate.postForEntity(getRootUrl() + "/record?owner=Anna&property=Flat", record, BuildingRecords.class);
+        System.out.println(postResponse);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
+        assertEquals(postResponse.getBody().getOwner().getName(), "Anna");
     }
 
     @Test
     public void testUpdateRecord() {
-        int id = 1;
+        Integer id = 1;
         BuildingRecords record= restTemplate.getForObject(getRootUrl() + "/record/" + id, BuildingRecords.class);
         record.setValue(20);
-        record.setSize(3);
+        record.setSize(6);
         restTemplate.put(getRootUrl() + "/record/" + id, record);
         BuildingRecords updatedRecord = restTemplate.getForObject(getRootUrl() + "/record/" + id, BuildingRecords.class);
         assertNotNull(updatedRecord);
@@ -64,7 +66,7 @@ public class BuildingRecordsControllerIT {
 
     @Test
     public void testDeleteOwner() {
-        int id = 2;
+        Integer id = 1;
         BuildingRecords record = restTemplate.getForObject(getRootUrl() + "/record/" + id, BuildingRecords.class);
         assertNotNull(record);
         restTemplate.delete(getRootUrl() + "/record/" + id);
@@ -77,10 +79,10 @@ public class BuildingRecordsControllerIT {
 
     @Test
     public void testGetTaxes() throws JSONException {
-        int id =1;
+        Integer id = 3;
         String reponse = this.restTemplate.getForObject("/api/v3/taxes/" + id,String.class);
         System.out.println(reponse);
-        assertEquals("7.8665",reponse);
+        assertEquals("4.65",reponse);
 
     }
 

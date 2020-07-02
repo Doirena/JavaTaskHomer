@@ -33,7 +33,7 @@ public class PropertyServiceTest {
 
     @Test
     public void shouldSavedProperty() {
-        final Property property = new Property(null, "Flat", 20);
+        Property property = new Property(null, "Flat", 20);
         given(propertyRepository.save(property)).willAnswer(invocation -> invocation.getArgument(0));
         Property savedProperty = propertyService.createProperty(property);
         assertThat(savedProperty).isNotNull();
@@ -53,25 +53,25 @@ public class PropertyServiceTest {
 
     @Test
     public void findPropertyById(){
-        final Integer id = 1;
-        final Property property = new Property(1, "Flat", 10);
+        Integer id = 1;
+        Property property = new Property(1, "Flat", 10);
         given(propertyRepository.findById(id)).willReturn(Optional.of(property));
-        final Optional<Property> expected = propertyService.findPropertyById(id);
+        Optional<Property> expected = propertyService.findPropertyById(id);
         assertThat(expected).isNotNull();
     }
 
     @Test
     public void findPropertyByType(){
-        final String type = "Flat";
-        final Property property = new Property(1, "Flat", 10);
+        String type = "Flat";
+        Property property = new Property(1, "Flat", 10);
         given(propertyRepository.findBYType(type)).willReturn(property);
-        final Property expected = propertyService.findPropertyByType(type);
+        Property expected = propertyService.findPropertyByType(type);
         assertThat(expected).isNotNull();
     }
 
     @Test
     public void shouldDeleteProperty() {
-        final Integer id = 1;
+        Integer id = 1;
         propertyService.deletePropertyById(id);
         propertyService.deletePropertyById(id);
         verify(propertyRepository, atLeastOnce()).deleteById(id);

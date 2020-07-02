@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.util.List;
 
+
 @Entity
 @Table(name = "owner")
 @NamedQueries({

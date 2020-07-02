@@ -32,7 +32,7 @@ public class BuildingRecordsServiceTest {
 
     @Test
     public void shouldSavedRecord() {
-        final BuildingRecords record = new BuildingRecords(null, "Naugardukas str. 1", 200,20 );
+        BuildingRecords record = new BuildingRecords(null, "Naugardukas str. 1", 200,20 );
         given(recordsRepository.save(record)).willAnswer(invocation -> invocation.getArgument(0));
         BuildingRecords savedRecords = recordsService.createRecord(record);
         assertThat(savedRecords).isNotNull();
@@ -52,16 +52,16 @@ public class BuildingRecordsServiceTest {
 
     @Test
     public void findRecordById(){
-        final Integer id = 1;
-        final BuildingRecords record =new BuildingRecords(1, "Naugardukas str. 1", 100,10 );
+        Integer id = 1;
+        BuildingRecords record =new BuildingRecords(1, "Naugardukas str. 1", 100,10 );
         given(recordsRepository.findById(id)).willReturn(Optional.of(record));
-        final Optional<BuildingRecords> expected = recordsService.findRecordById(id);
+        Optional<BuildingRecords> expected = recordsService.findRecordById(id);
         assertThat(expected).isNotNull();
     }
 
     @Test
     public void shouldDeleteRecord() {
-        final Integer id = 1;
+        Integer id = 1;
         recordsService.deleteRecordById(id);
         recordsService.deleteRecordById(id);
         verify(recordsRepository, atLeastOnce()).deleteById(id);
@@ -69,8 +69,8 @@ public class BuildingRecordsServiceTest {
 
     @Test
     public void shouldCalculateRight(){
-        final Integer id = 1;
-        final String rez = "200";
+       Integer id = 1;
+        String rez = "200";
         //given(recordsRepository.RealEstateTaxes(id)).willReturn(rez);
         when(recordsRepository.RealEstateTaxes(id)).thenReturn(rez);
 

@@ -31,7 +31,7 @@ public class OwnerServiceTest {
 
     @Test
     public void shouldSavedOwnerSuccessFully() {
-        final Owner owner = new Owner(null, "Tom");
+       Owner owner = new Owner(null, "Tom");
         given(ownerRepository.save(owner)).willAnswer(invocation -> invocation.getArgument(0));
         Owner savedOwner = ownerService.createOwner(owner);
         assertThat(savedOwner).isNotNull();
@@ -51,26 +51,26 @@ public class OwnerServiceTest {
 
     @Test
     public void findOwnerById(){
-        final Integer id = 1;
-        final Owner owner = new Owner(1,  "Tom");
+        Integer id = 1;
+        Owner owner = new Owner(1,  "Tom");
         given(ownerRepository.findById(id)).willReturn(Optional.of(owner));
-        final Optional<Owner> expected = ownerService.findOwnerById(id);
+        Optional<Owner> expected = ownerService.findOwnerById(id);
         assertThat(expected).isNotNull();
     }
 
     @Test
     public void findOwnerByName(){
-        final String name = "Tom";
-        final Owner owner = new Owner(1,  "Tom");
+        String name = "Tom";
+        Owner owner = new Owner(1,  "Tom");
         given(ownerRepository.findBYName(name)).willReturn(owner);
-        final Owner expected = ownerService.findOwnerByName(name);
+        Owner expected = ownerService.findOwnerByName(name);
         assertThat(expected).isNotNull();
         assertEquals(owner,expected);
     }
 
     @Test
     public void shouldDeleteOwner() {
-        final Integer ownerId = 1;
+        Integer ownerId = 1;
         ownerService.deleteOwnerById(ownerId);
         ownerService.deleteOwnerById(ownerId);
         verify(ownerRepository, times(2)).deleteById(ownerId);

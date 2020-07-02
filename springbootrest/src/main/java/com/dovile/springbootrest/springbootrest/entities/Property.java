@@ -68,5 +68,13 @@ public class Property {
         this.buildingRecords = buildingRecords;
     }
 
-
+    @Override
+    public String toString() {
+        return "Property{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", tax_rate=" + tax_rate +
+                ", buildingRecords=" + buildingRecords +
+                '}';
+    }
 }

@@ -63,7 +63,7 @@ public class OwnerControllerIT {
 
     @Test
     public void testUpdateOwner() {
-        int id = 1;
+        Integer id = 1;
         Owner owner = restTemplate.getForObject(getRootUrl() + "/owner/" + id, Owner.class);
         owner.setName("Dovile");
         owner.setName("Dovile1");
@@ -74,7 +74,7 @@ public class OwnerControllerIT {
 
     @Test
     public void testDeleteOwner() {
-        int id = 2;
+        Integer id = 2;
         Owner owner = restTemplate.getForObject(getRootUrl() + "/owner/" + id, Owner.class);
         assertNotNull(owner);
         restTemplate.delete(getRootUrl() + "/owner/" + id);

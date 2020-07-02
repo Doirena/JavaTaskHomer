@@ -52,6 +52,7 @@ public class BuildingRecordsController {
             throw new ArithmeticException("Please insert correct Owner");
         }
 
+
         if (record.getPropertyType() == null){
             throw new ArithmeticException("Please insert correct Property Type");
         }
@@ -71,12 +72,14 @@ public class BuildingRecordsController {
             record.setAddress(redordDetails.getAddress());
         }
         if (redordDetails.getOwner() != null) {
-            Owner owner = ownerService.findOwnerById(redordDetails.getOwner().getId()).orElseThrow(() -> new ResourceNotFoundException("Owner not found on: " + redordDetails.getOwner().getId()));
+            Owner owner = ownerService.findOwnerById(redordDetails.getOwner().getId()).
+                    orElseThrow(() -> new ResourceNotFoundException("Owner not found on: " + redordDetails.getOwner().getId()));
             record.setOwner(redordDetails.getOwner());
         }
 
         if (redordDetails.getPropertyType()!= null) {
-            Property property = propertyService.findPropertyById(redordDetails.getPropertyType().getId()).orElseThrow(() -> new ResourceNotFoundException("Property not found on: " + redordDetails.getPropertyType().getId()));
+            Property property = propertyService.findPropertyById(redordDetails.getPropertyType().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Property not found on: " + redordDetails.getPropertyType().getId()));
             record.setPropertyType(redordDetails.getPropertyType());
         }
         record.setSize(redordDetails.getSize());

@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@ApiModel(description = "This is Building records class, has address, size, value, owner, property type ")
+@ApiModel(description = "This is Building record class. Has address, size, value, owner and property type ")
 public class BuildingRecords {
 
     @Id

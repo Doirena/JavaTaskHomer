@@ -19,20 +19,20 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v2")
-@Api(value="Property type controller ", description ="create, update, delete and get property type by id. Get the whole list of properties types.")
+@Api(value="Property type controller ", description ="create, update, delete and get the property type by id. Get the whole list of property types.")
 public class PropertyContoller {
 
     @Autowired
     private PropertyService propertyService;
 
     @GetMapping("/properties")
-    @ApiOperation(value = "List of current properties types", response=List.class )
+    @ApiOperation(value = "List of the current property types", response=List.class )
     public List<Property> getAllProperties() {
         return propertyService.findAllProperties();
     }
 
     @GetMapping("/property/{id}")
-    @ApiOperation(value = "Get a property type by id", response=Property.class)
+    @ApiOperation(value = "Get the property type by id", response=Property.class)
     public ResponseEntity<Property> getPropertyById(
             @PathVariable(value = "id") Integer propertyId) throws ResourceNotFoundException {
         Property property = propertyService.findPropertyById(propertyId)
@@ -43,7 +43,7 @@ public class PropertyContoller {
     @PostMapping("/property")
     @ApiOperation(value = "Create a new propety type", response=Property.class)
     public Property createProperty(
-            @ApiParam(value = "Insert the property type and tax rate", required = true) @RequestBody Property property) {
+            @ApiParam(value = "Add a property type and tax rate", required = true) @RequestBody Property property) {
         property.setId(null);
         return propertyService.createProperty(property);
     }
@@ -52,7 +52,7 @@ public class PropertyContoller {
     @ApiOperation(value = "Update the property type", response=Property.class)
     public ResponseEntity<Property> updateProperty(
             @PathVariable(value = "id") Integer propertyId,
-            @ApiParam(value = "Choose the propety type id", required = true) @RequestBody Property propertyDetails) throws ResourceNotFoundException {
+            @ApiParam(value = "Choose the property type id", required = true) @RequestBody Property propertyDetails) throws ResourceNotFoundException {
         Property property = propertyService.findPropertyById(propertyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Property not found on: " + propertyId));
 

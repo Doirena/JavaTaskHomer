@@ -22,7 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v3")
-@Api(value="Building records controller ", description ="create, update, delete and get the whole list of buildings records. Calculate the total yearly real estate tax by owner's id.")
+@Api(value="Building records controller ", description ="create, update, delete and get the whole list of building records. Calculate the total yearly real estate tax by owner id.")
 public class BuildingRecordsController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class BuildingRecordsController {
 
 
     @GetMapping("/records")
-    @ApiOperation(value = "List of current building's records", response=List.class )
+    @ApiOperation(value = "List of the current building records", response=List.class )
     public List<BuildingRecords> getAllBuildingRecords() {
         return recordsService.findAllrecords();
     }
@@ -42,9 +42,9 @@ public class BuildingRecordsController {
     @PostMapping(value ="record",  params = {"owner","property"})
     @ApiOperation(value = "Create a new building record", response=BuildingRecords.class)
     public BuildingRecords createRecords(
-            @ApiParam(value = "Insert information about the building", required = true)@RequestBody BuildingRecords record,
+            @ApiParam(value = "Add information about the building", required = true)@RequestBody BuildingRecords record,
             @ApiParam(value = "Choose the owner name", required = true)@RequestParam(value = "owner") String owner,
-            @ApiParam(value = "Choose the propety type", required = true)@RequestParam(value = "property") String property){
+            @ApiParam(value = "Choose the property type", required = true)@RequestParam(value = "property") String property){
         record.setId(null);
         Property property1 = propertyService.findPropertyByType(property);
         if (property1 != null){
@@ -64,10 +64,10 @@ public class BuildingRecordsController {
 
 
     @PutMapping("/record/{id}")
-    @ApiOperation(value = "Update the building's information", response=BuildingRecords.class)
+    @ApiOperation(value = "Update the building information", response=BuildingRecords.class)
     public ResponseEntity<BuildingRecords> updateRecords(
             @PathVariable(value = "id") Integer recordId,
-            @ApiParam(value = "Choose the building's record id", required = true)  @RequestBody BuildingRecords redordDetails) throws ResourceNotFoundException {
+            @ApiParam(value = "Choose the building record id", required = true)  @RequestBody BuildingRecords redordDetails) throws ResourceNotFoundException {
 
         BuildingRecords record = recordsService.findRecordById(recordId)
                 .orElseThrow(() -> new ResourceNotFoundException("Record not found on: " + recordId));

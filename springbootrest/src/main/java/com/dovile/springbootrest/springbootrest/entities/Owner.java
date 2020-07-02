@@ -15,7 +15,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Owner.findBYName", query = "SELECT o FROM Owner o WHERE o.name =: owner")})
 
-@ApiModel(description = "This is owner class, has id and name")
+@ApiModel(description = "This is owner class. Has id and name")
 public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

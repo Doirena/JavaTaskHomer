@@ -18,7 +18,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin
-@Api(value="Owner controller ", description ="create, update, delete and get owner by id. Get the whole list of owners.")
+@Api(value="Owner controller ", description ="create, update, delete and get an owner by id. Get the whole list of owners.")
 public class OwnerController {
 
     @Autowired
@@ -26,13 +26,13 @@ public class OwnerController {
 
 
     @GetMapping("/owners")
-    @ApiOperation(value = "List of current owners", response=List.class )
+    @ApiOperation(value = "List of the current owners", response=List.class )
     public List<Owner> getAllOwners() {
        return ownerService.findAllOwners();
     }
 
     @GetMapping("/owner/{id}")
-    @ApiOperation(value = "Get the owner by id", response=Owner.class)
+    @ApiOperation(value = "Get an owner by id", response=Owner.class)
     public ResponseEntity<Owner> getOwnerById(
             @PathVariable(value = "id") Integer ownerId) throws ResourceNotFoundException {
         Owner owner = ownerService.findOwnerById(ownerId)
@@ -47,7 +47,7 @@ public class OwnerController {
             @ApiResponse(code = 505, message =  "Out of owner material")
     })
     public Owner createOwner(
-            @ApiParam(value = "Insert the owner's name", required = true) @RequestBody @Validated Owner owner) {
+            @ApiParam(value = "Add the owner name", required = true) @RequestBody @Validated Owner owner) {
         owner.setId(null);
         return ownerService.createOwner(owner);
     }
@@ -56,7 +56,7 @@ public class OwnerController {
     @ApiOperation(value = "Update the owner", response=Owner.class)
     public ResponseEntity<Owner> updateOwner(
             @PathVariable(value = "id") Integer ownerId,
-           @ApiParam(value = "Choose the owner's id", required = true)  @RequestBody Owner ownerDetails) throws ResourceNotFoundException {
+           @ApiParam(value = "Choose the owner id", required = true)  @RequestBody Owner ownerDetails) throws ResourceNotFoundException {
         Owner owner = ownerService.findOwnerById(ownerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Owner not found on: " + ownerId));
         owner.setName(ownerDetails.getName());

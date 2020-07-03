@@ -1,12 +1,9 @@
 package com.dovile.springbootrest.springbootrest.controller;
 
 import com.dovile.springbootrest.springbootrest.entities.BuildingRecords;
-import com.dovile.springbootrest.springbootrest.entities.Owner;
-import com.dovile.springbootrest.springbootrest.entities.Property;
 import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;

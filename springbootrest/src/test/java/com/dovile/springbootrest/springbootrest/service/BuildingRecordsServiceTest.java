@@ -1,8 +1,6 @@
 package com.dovile.springbootrest.springbootrest.service;
 
 import com.dovile.springbootrest.springbootrest.entities.BuildingRecords;
-import com.dovile.springbootrest.springbootrest.entities.Owner;
-import com.dovile.springbootrest.springbootrest.entities.Property;
 import com.dovile.springbootrest.springbootrest.repository.BuildingRecordsRepository;
 
 import org.junit.Test;

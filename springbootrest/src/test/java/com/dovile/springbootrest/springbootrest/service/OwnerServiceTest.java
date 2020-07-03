@@ -2,7 +2,7 @@ package com.dovile.springbootrest.springbootrest.service;
 
 import com.dovile.springbootrest.springbootrest.entities.Owner;
 import com.dovile.springbootrest.springbootrest.repository.OwnerRepository;
-import com.dovile.springbootrest.springbootrest.service.OwnerService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

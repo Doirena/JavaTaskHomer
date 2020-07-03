@@ -1,6 +1,6 @@
 package com.dovile.springbootrest.springbootrest.controller;
 
-import com.dovile.springbootrest.springbootrest.entities.Owner;
+
 import com.dovile.springbootrest.springbootrest.entities.Property;
 import org.json.JSONException;
 import org.junit.Test;

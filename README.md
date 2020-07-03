@@ -18,8 +18,9 @@ URL: http://localhost:8080/swagger-ui.html
 ![h2 db](https://user-images.githubusercontent.com/56863735/86447469-0e037e80-bd1e-11ea-8020-ef86368820d2.PNG)
 
 ### 3. Postman is used for working with data in this project:
-![postman 1](https://user-images.githubusercontent.com/56863735/86447526-25426c00-bd1e-11ea-9aaf-df8f48d7de23.PNG)
-![postman 2](https://user-images.githubusercontent.com/56863735/86447523-24113f00-bd1e-11ea-8179-720fc6d23a1d.PNG)
+![postman 1](https://user-images.githubusercontent.com/56863735/86448787-f0cfaf80-bd1f-11ea-92b2-5842f0a55f62.PNG)
+![postman 2](https://user-images.githubusercontent.com/56863735/86448789-f0cfaf80-bd1f-11ea-91a7-658a207fe8bc.PNG)
+![postman 3](https://user-images.githubusercontent.com/56863735/86448785-ef9e8280-bd1f-11ea-9a56-bb7c8a4947f7.PNG)
 
 ### 4. Whole project is covered by unit tests (JUnit & Mockito):
 ![test1](https://user-images.githubusercontent.com/56863735/86447622-4b680c00-bd1e-11ea-9547-7f4be30d5aba.PNG)

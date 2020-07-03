@@ -49,7 +49,7 @@ public class BuildingRecordsServiceTest {
     }
 
     @Test
-    public void findRecordById(){
+    public void shouldfindRecordById(){
         Integer id = 1;
         BuildingRecords record =new BuildingRecords(1, "Naugardukas str. 1", 100,10 );
         given(recordsRepository.findById(id)).willReturn(Optional.of(record));

@@ -50,7 +50,7 @@ public class OwnerServiceTest {
     }
 
     @Test
-    public void findOwnerById(){
+    public void shouldfindOwnerById(){
         Integer id = 1;
         Owner owner = new Owner(1,  "Tom");
         given(ownerRepository.findById(id)).willReturn(Optional.of(owner));
@@ -59,7 +59,7 @@ public class OwnerServiceTest {
     }
 
     @Test
-    public void findOwnerByName(){
+    public void shouldfindOwnerByName(){
         String name = "Tom";
         Owner owner = new Owner(1,  "Tom");
         given(ownerRepository.findBYName(name)).willReturn(owner);

@@ -62,7 +62,7 @@ public class BuildingRecordsControllerIT {
     }
 
     @Test
-    public void testDeleteOwner() {
+    public void testDeleteRecord() {
         Integer id = 1;
         BuildingRecords record = restTemplate.getForObject(getRootUrl() + "/record/" + id, BuildingRecords.class);
         assertNotNull(record);

@@ -52,7 +52,7 @@ public class PropertyServiceTest {
     }
 
     @Test
-    public void findPropertyById(){
+    public void shouldfindPropertyById(){
         Integer id = 1;
         Property property = new Property(1, "Flat", 10);
         given(propertyRepository.findById(id)).willReturn(Optional.of(property));
@@ -61,7 +61,7 @@ public class PropertyServiceTest {
     }
 
     @Test
-    public void findPropertyByType(){
+    public void shouldfindPropertyByType(){
         String type = "Flat";
         Property property = new Property(1, "Flat", 10);
         given(propertyRepository.findBYType(type)).willReturn(property);
